@@ -14,7 +14,7 @@ def apply_mapping(skill, mapping):
 
 fake = Faker('ru_RU')
 
-skills = ['Кислотный взгляд', 'Ледяной выстрел', 'Огненный заряд']
+skills = ['Стремительный прыжок', 'Электрический выстрел', 'Ледяной удар', 'Стремительный удар', 'Кислотный взгляд', 'Тайный побег', 'Ледяной выстрел', 'Огненный заряд']
 
 mapping = {
     'а': 'а͠',
@@ -88,7 +88,7 @@ mapping = {
 
 modified_skills = [apply_mapping(skill, mapping) for skill in skills]
 for i in range(10):
-    selected_skills = random.sample(modified_skills, 3)
+    selected_skills = random.sample(modified_skills, 8)
     context = {
      'first_name': fake.first_name(),
      'last_name': fake.last_name(),
