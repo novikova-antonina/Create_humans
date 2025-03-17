@@ -5,7 +5,8 @@ from faker import Faker
 
 import file_operations
 
-os.makedirs('output', exist_ok=True)
+
+os.makedirs('output', ext_ok=True)
 
 
 def apply_mapping(skill, mapping):
@@ -14,7 +15,16 @@ def apply_mapping(skill, mapping):
 
 fake = Faker('ru_RU')
 
-skills = ['Стремительный прыжок', 'Электрический выстрел', 'Ледяной удар', 'Стремительный удар', 'Кислотный взгляд', 'Тайный побег', 'Ледяной выстрел', 'Огненный заряд']
+skills = [
+    'Стремительный прыжок',
+    'Электрический выстрел',
+    'Ледяной удар',
+    'Стремительный удар',
+    'Кислотный взгляд',
+    'Тайный побег',
+    'Ледяной выстрел',
+    'Огненный заряд'
+    ]
 
 mapping = {
     'а': 'а͠',
@@ -90,18 +100,18 @@ modified_skills = [apply_mapping(skill, mapping) for skill in skills]
 for i in range(10):
     selected_skills = random.sample(modified_skills, 8)
     context = {
-     'first_name': fake.first_name(),
-     'last_name': fake.last_name(),
-     'job': fake.job(),
-     'town': fake.city(),
-     'strength': random.randint(3, 18),
-     'agility': random.randint(3, 18),
-     'endurance': random.randint(3, 18),
-     'intelligence': random.randint(3, 18),
-     'luck': random.randint(3, 18),
-     'skill_1': selected_skills[0],
-     'skill_2': selected_skills[1],
-     'skill_3': selected_skills[2],
+        'first_name': fake.first_name(),
+        'last_name': fake.last_name(),
+        'job': fake.job(),
+        'town': fake.city(),
+        'strength': random.randint(3, 18),
+        'agility': random.randint(3, 18),
+        'endurance': random.randint(3, 18),
+        'intelligence': random.randint(3, 18),
+        'luck': random.randint(3, 18),
+        'skill_1': selected_skills[0],
+        'skill_2': selected_skills[1],
+        'skill_3': selected_skills[2],
     }
     output_filename = f'charsheet-{i}.svg'
     output_path = os.path.join('output', output_filename)
