@@ -6,7 +6,7 @@ from faker import Faker
 import file_operations
 
 
-skills = [
+SKILLS = [
     'Стремительный прыжок',
     'Электрический выстрел',
     'Ледяной удар',
@@ -15,9 +15,9 @@ skills = [
     'Тайный побег',
     'Ледяной выстрел',
     'Огненный заряд'
-    ]
+]
 
-mapping = {
+MAPPING = {
     'а': 'а͠',
     'б': 'б̋',
     'в': 'в͒͠',
@@ -95,11 +95,11 @@ def apply_mapping(skill, mapping):
 
 
 def main():
-    modified_skills = [apply_mapping(skill, mapping) for skill in skills]
+    modified_SKILLS = [apply_mapping(skill, MAPPING) for skill in SKILLS]
     os.makedirs('output', exist_ok=True)
     if __name__ == '__main__':
         for i in range(10):
-            selected_skills = random.sample(modified_skills, 8)
+            selected_SKILLS = random.sample(modified_SKILLS, 8)
             context = {
                 'first_name': fake.first_name(),
                 'last_name': fake.last_name(),
@@ -110,9 +110,9 @@ def main():
                 'endurance': random.randint(3, 18),
                 'intelligence': random.randint(3, 18),
                 'luck': random.randint(3, 18),
-                'skill_1': selected_skills[0],
-                'skill_2': selected_skills[1],
-                'skill_3': selected_skills[2],
+                'skill_1': selected_SKILLS[0],
+                'skill_2': selected_SKILLS[1],
+                'skill_3': selected_SKILLS[2],
             }
 
     output_filename = f'charsheet-{i}.svg'
