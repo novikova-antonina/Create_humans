@@ -90,16 +90,16 @@ MAPPING = {
 FAKE = Faker("ru_RU")
 
 
-def apply_MAPPING(skill, MAPPING):
+def apply_mapping(skill, MAPPING):
     return "".join(MAPPING.get(char, char) for char in skill)
 
 
 def main():
-    modified_SKILLS = [apply_MAPPING(skill, MAPPING) for skill in SKILLS]
+    modified_skills = [apply_mapping(skill, MAPPING) for skill in SKILLS]
     os.makedirs("output", exist_ok=True)
 
     for i in range(10):
-        selected_SKILLS = random.sample(modified_SKILLS, 8)
+        selected_skills = random.sample(modified_skills, 8)
         context = {
             "first_name": FAKE.first_name(),
             "last_name": FAKE.last_name(),
@@ -110,14 +110,15 @@ def main():
             "endurance": random.randint(3, 18),
             "intelligence": random.randint(3, 18),
             "luck": random.randint(3, 18),
-            "skill_1": selected_SKILLS[0],
-            "skill_2": selected_SKILLS[1],
-            "skill_3": selected_SKILLS[2],
-           }
+            "skill_1": selected_skills[0],
+            "skill_2": selected_skills[1],
+            "skill_3": selected_skills[2],
+        }
 
         output_filename = f"charsheet-{i}.svg"
         output_path = os.path.join("output", output_filename)
         file_operations.render_template("src/charsheet.svg", output_path, context)
+
 
 if __name__ == "__main__":
     main()
