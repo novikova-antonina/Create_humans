@@ -87,7 +87,7 @@ MAPPING = {
     " ": " ",
 }
 
-fake = Faker("ru_RU")
+FAKE = Faker("ru_RU")
 
 
 def apply_MAPPING(skill, MAPPING):
@@ -98,27 +98,26 @@ def main():
     modified_SKILLS = [apply_MAPPING(skill, MAPPING) for skill in SKILLS]
     os.makedirs("output", exist_ok=True)
 
-    if __name__ == "__main__":
-        for i in range(10):
-            selected_SKILLS = random.sample(modified_SKILLS, 8)
-            context = {
-                "first_name": fake.first_name(),
-                "last_name": fake.last_name(),
-                "job": fake.job(),
-                "town": fake.city(),
-                "strength": random.randint(3, 18),
-                "agility": random.randint(3, 18),
-                "endurance": random.randint(3, 18),
-                "intelligence": random.randint(3, 18),
-                "luck": random.randint(3, 18),
-                "skill_1": selected_SKILLS[0],
-                "skill_2": selected_SKILLS[1],
-                "skill_3": selected_SKILLS[2],
-            }
+    for i in range(10):
+        selected_SKILLS = random.sample(modified_SKILLS, 8)
+        context = {
+            "first_name": FAKE.first_name(),
+            "last_name": FAKE.last_name(),
+            "job": FAKE.job(),
+            "town": FAKE.city(),
+            "strength": random.randint(3, 18),
+            "agility": random.randint(3, 18),
+            "endurance": random.randint(3, 18),
+            "intelligence": random.randint(3, 18),
+            "luck": random.randint(3, 18),
+            "skill_1": selected_SKILLS[0],
+            "skill_2": selected_SKILLS[1],
+            "skill_3": selected_SKILLS[2],
+           }
 
-            output_filename = f"charsheet-{i}.svg"
-            output_path = os.path.join("output", output_filename)
-            file_operations.render_template("src/charsheet.svg", output_path, context)
+        output_filename = f"charsheet-{i}.svg"
+        output_path = os.path.join("output", output_filename)
+        file_operations.render_template("src/charsheet.svg", output_path, context)
 
-
-main()
+if __name__ == "__main__":
+    main()
